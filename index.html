@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Guía completa e interactiva sobre Inteligencia Artificial Generativa: modelos fundacionales, LLMs, difusión, aplicaciones prácticas y simulación de prompts.">
+  <title>IA Generativa | Fundamentos, Modelos y Futuro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Barra de Notificaciones Global (Toast Container) -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- Header & Navegación -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="logo-area">
+        <a href="#hero" class="brand-logo" id="nav-brand">
+          <div class="logo-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+              <circle cx="12" cy="12" r="4"></circle>
+            </svg>
+          </div>
+          <div class="logo-text">
+            <span class="logo-title">GenAI<strong>Hub</strong></span>
+            <span class="logo-tag">Inteligencia Artificial</span>
+          </div>
+        </a>
+      </div>
+
+      <nav class="main-nav" id="main-nav">
+        <ul class="nav-links">
+          <li><a href="#que-es" class="nav-link">¿Qué es?</a></li>
+          <li><a href="#modelos" class="nav-link">Modelos Clave</a></li>
+          <li><a href="#aplicaciones" class="nav-link">Aplicaciones</a></li>
+          <li><a href="#simulador" class="nav-link">Simulador</a></li>
+          <li><a href="#retos" class="nav-link">Ética y Futuro</a></li>
+          <li class="mobile-only-action"><button class="btn btn-outline btn-block" id="btn-login-mobile" type="button">Iniciar Sesión</button></li>
+          <li class="mobile-only-action"><button class="btn btn-primary btn-block" id="btn-register-mobile" type="button">Registrarse</button></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="btn btn-outline" id="btn-login" type="button">Iniciar Sesión</button>
+        <button class="btn btn-primary" id="btn-register" type="button">Registrarse</button>
+      </div>
+
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Abrir menú" type="button">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="hero">
+    <div class="hero-backdrop">
+      <div class="glow glow-1"></div>
+      <div class="glow glow-2"></div>
+      <div class="grid-overlay"></div>
+    </div>
+    <div class="container hero-container">
+      <div class="hero-content">
+        <div class="badge-pill">
+          <span class="badge-dot"></span>
+          Revolución Tecnológica en Curso
+        </div>
+        <h1 class="hero-title">
+          Comprende el Poder de la <span class="highlight-gradient">IA Generativa</span>
+        </h1>
+        <p class="hero-description">
+          De sistemas que simplemente analizaban datos a inteligencias capaces de concebir texto, código, arte, audio y soluciones complejas. Conoce cómo los <strong>Modelos Fundacionales</strong> y la <strong>Ingeniería de Prompts</strong> están redefiniendo el futuro.
+        </p>
+        <div class="hero-cta-group">
+          <a href="#que-es" class="btn btn-primary btn-lg">Explorar Conceptos</a>
+          <a href="#simulador" class="btn btn-secondary btn-lg">Probar Simulador</a>
+          <button class="btn btn-ghost btn-lg" id="btn-whitepaper" type="button">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            Descargar Whitepaper
+          </button>
+        </div>
+
+        <div class="hero-metrics">
+          <div class="metric-item">
+            <span class="metric-val">+100M</span>
+            <span class="metric-label">Usuarios en tiempo récord</span>
+          </div>
+          <div class="metric-divider"></div>
+          <div class="metric-item">
+            <span class="metric-val">Multimodal</span>
+            <span class="metric-label">Texto, Imagen, Voz y Código</span>
+          </div>
+          <div class="metric-divider"></div>
+          <div class="metric-item">
+            <span class="metric-val">10x</span>
+            <span class="metric-label">Productividad y Creatividad</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-card-showcase">
+        <div class="interactive-card">
+          <div class="card-header-bar">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+            <span class="card-bar-title">Transformación en Tiempo Real</span>
+          </div>
+          <div class="card-body-content">
+            <div class="stream-line">
+              <span class="token-tag">Prompt:</span>
+              <span class="prompt-text">"Genera una solución escalable con LLMs y agentes..."</span>
+            </div>
+            <div class="stream-output">
+              <div class="ai-avatar">AI</div>
+              <div class="ai-text-box">
+                <p class="ai-response-typing">
+                  Sintetizando arquitecturas RAG (Retrieval-Augmented Generation), orquestación de prompts semánticos y modelos fundacionales ajustados...
+                </p>
+                <div class="token-indicator">
+                  <span class="pulse-token"></span>
+                  <span>Generando 48 tokens/seg</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-actions-row">
+              <button class="btn-chip" id="btn-metric-1">LLMs</button>
+              <button class="btn-chip" id="btn-metric-2">Transformers</button>
+              <button class="btn-chip" id="btn-metric-3">Difusión Latente</button>
+              <button class="btn-chip" id="btn-metric-4">RAG</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección: ¿Qué es la IA Generativa? -->
+  <section class="section" id="que-es">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-badge">Fundamentos</span>
+        <h2 class="section-title">¿Qué es exactamente la IA Generativa?</h2>
+        <p class="section-subtitle">
+          La Inteligencia Artificial Generativa es una rama de la IA enfocada en la creación autónoma de contenido original —texto, imágenes, video, audio, modelos 3D y código— a partir de patrones aprendidos en conjuntos masivos de datos.
+        </p>
+      </div>
+
+      <div class="comparison-grid">
+        <div class="info-card traditional-ai">
+          <div class="card-badge">Paradigma Anterior</div>
+          <div class="card-icon-circle icon-gray">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+          </div>
+          <h3>IA Discriminativa / Clásica</h3>
+          <p class="card-desc">
+            Clasifica, predice y analiza datos preexistentes. Responde a preguntas directas calculando probabilidades sobre clases conocidas.
+          </p>
+          <ul class="feature-list">
+            <li><span>✓</span> ¿Es este correo spam o no spam?</li>
+            <li><span>✓</span> ¿Qué número contiene esta imagen?</li>
+            <li><span>✓</span> Predecir el precio futuro de una acción</li>
+            <li><span>✕</span> <strong>No crea</strong> contenido nuevo ni razona fluidamente</li>
+          </ul>
+          <div class="card-footer">
+            <button class="btn btn-outline-sm" id="btn-details-trad">Ver Casos Clásicos</button>
+          </div>
+        </div>
+
+        <div class="info-card generative-ai highlight-card">
+          <div class="card-badge badge-brand">Nueva Era</div>
+          <div class="card-icon-circle icon-blue">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+          </div>
+          <h3>IA Generativa Moderna</h3>
+          <p class="card-desc">
+            Modela la distribución probabilística de datos complejos para generar nuevas instancias plausibles e inéditas basadas en instrucciones humanas (prompts).
+          </p>
+          <ul class="feature-list">
+            <li><span>✓</span> Redactar artículos técnicos y análisis de mercado</li>
+            <li><span>✓</span> Crear obras de arte visual e interfaces UI desde texto</li>
+            <li><span>✓</span> Programar software completo y refactorizar código</li>
+            <li><span>✓</span> <strong>Sintetiza conocimiento</strong> y genera valor continuo</li>
+          </ul>
+          <div class="card-footer">
+            <button class="btn btn-primary-sm" id="btn-details-gen">Explorar Posibilidades</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Flujo de Funcionamiento -->
+      <div class="workflow-card">
+        <h3 class="workflow-title">¿Cómo Funciona el Proceso Generativo?</h3>
+        <div class="workflow-steps">
+          <div class="step-card">
+            <div class="step-number">01</div>
+            <h4>Entrenamiento Masivo</h4>
+            <p>Se exponen redes neuronales profundas (Deep Learning) a billones de datos para aprender semántica, estructuras y relaciones.</p>
+          </div>
+          <div class="step-arrow">→</div>
+          <div class="step-card">
+            <div class="step-number">02</div>
+            <h4>Espacio Latente</h4>
+            <p>El modelo comprime el conocimiento en representaciones vectoriales multidimensionales de conceptos interconectados.</p>
+          </div>
+          <div class="step-arrow">→</div>
+          <div class="step-card">
+            <div class="step-number">03</div>
+            <h4>Inferencia y Muestreo</h4>
+            <p>Al recibir un prompt, predice iterativamente el próximo token o remueve ruido visual hasta formar un resultado coherente.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección: Modelos Clave -->
+  <section class="section bg-light" id="modelos">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-badge">Tecnología</span>
+        <h2 class="section-title">Modelos y Arquitecturas Fundacionales</h2>
+        <p class="section-subtitle">
+          Los pilares matemáticos y computacionales que sustentan la revolución generativa actual.
+        </p>
+      </div>
+
+      <div class="models-grid">
+        <div class="model-item">
+          <div class="model-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+          </div>
+          <h3>Transformers & LLMs</h3>
+          <p class="model-sub">Large Language Models (GPT, Claude, Gemini, Llama)</p>
+          <p class="model-desc">
+            Basados en el mecanismo de <em>atención</em> (Self-Attention). Procesan secuencias completas en paralelo, capturando el contexto global para generar lenguaje humano, razonamiento y código.
+          </p>
+          <div class="model-meta">
+            <span class="badge-tag">Atención</span>
+            <span class="badge-tag">Context Window</span>
+            <span class="badge-tag">Tokens</span>
+          </div>
+          <button class="btn-link-action" id="btn-model-llm">Ver detalles técnicos →</button>
+        </div>
+
+        <div class="model-item">
+          <div class="model-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="m4.93 4.93 4.24 4.24"></path><path d="m14.83 9.17 4.24-4.24"></path><path d="m14.83 14.83 4.24 4.24"></path><path d="m9.17 14.83-4.24 4.24"></path></svg>
+          </div>
+          <h3>Modelos de Difusión</h3>
+          <p class="model-sub">Generación Visual (Stable Diffusion, Midjourney, Flux)</p>
+          <p class="model-desc">
+            Funcionan aprendiendo a eliminar el ruido gaussiano añadido gradualmente a una imagen, reconstruyendo una obra de arte o fotografía fotorrealista a partir del puro ruido guiado por texto.
+          </p>
+          <div class="model-meta">
+            <span class="badge-tag">Denoising</span>
+            <span class="badge-tag">Latent Space</span>
+            <span class="badge-tag">U-Net</span>
+          </div>
+          <button class="btn-link-action" id="btn-model-diff">Ver detalles técnicos →</button>
+        </div>
+
+        <div class="model-item">
+          <div class="model-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          </div>
+          <h3>GANs (Redes Antagónicas)</h3>
+          <p class="model-sub">Generador vs Discriminador</p>
+          <p class="model-desc">
+            Dos redes neuronales compiten entre sí: el Generador intenta crear datos realistas mientras el Discriminador intenta detectar la falsedad, refinando el resultado hasta ser indistinguible de la realidad.
+          </p>
+          <div class="model-meta">
+            <span class="badge-tag">Adversarial</span>
+            <span class="badge-tag">Juego de Suma Cero</span>
+          </div>
+          <button class="btn-link-action" id="btn-model-gan">Ver detalles técnicos →</button>
+        </div>
+
+        <div class="model-item">
+          <div class="model-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+          </div>
+          <h3>Modelos Multimodales</h3>
+          <p class="model-sub">Fusión de Sentidos Digitales</p>
+          <p class="model-desc">
+            Arquitecturas unificadas que pueden procesar de forma nativa entradas mixtas (audio, video, capturas de pantalla, esquemas de diseño) y producir salidas coherentes en cualquier formato deseado.
+          </p>
+          <div class="model-meta">
+            <span class="badge-tag">Cross-Attention</span>
+            <span class="badge-tag">Embedding Unificado</span>
+          </div>
+          <button class="btn-link-action" id="btn-model-multi">Ver detalles técnicos →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección: Aplicaciones Prácticas -->
+  <section class="section" id="aplicaciones">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-badge">Impacto Real</span>
+        <h2 class="section-title">Campos de Aplicación y Productividad</h2>
+        <p class="section-subtitle">
+          Descubre cómo las diferentes industrias están capitalizando la IA Generativa hoy.
+        </p>
+
+        <!-- Filtros interactivos -->
+        <div class="filter-tabs">
+          <button class="filter-btn active" data-filter="all">Todos</button>
+          <button class="filter-btn" data-filter="dev">Desarrollo & Código</button>
+          <button class="filter-btn" data-filter="creativity">Creatividad & Medios</button>
+          <button class="filter-btn" data-filter="business">Negocios & Análisis</button>
+          <button class="filter-btn" data-filter="science">Ciencia & Salud</button>
+        </div>
+      </div>
+
+      <div class="apps-grid">
+        <div class="app-card" data-category="dev">
+          <div class="app-card-header">
+            <span class="app-icon">💻</span>
+            <span class="app-cat-tag">Desarrollo</span>
+          </div>
+          <h3>Generación & Asistencia de Código</h3>
+          <p>Autocompletado inteligente de sintaxis, refactorización de arquitecturas legacy, generación de pruebas unitarias automáticas y documentación contextual de APIs.</p>
+          <div class="app-impact">
+            <strong>Impacto:</strong> Aumento del 40-55% en velocidad de desarrollo.
+          </div>
+        </div>
+
+        <div class="app-card" data-category="creativity">
+          <div class="app-card-header">
+            <span class="app-icon">🎨</span>
+            <span class="app-cat-tag">Creatividad</span>
+          </div>
+          <h3>Diseño, Branding y Concept Art</h3>
+          <p>Ideación visual ultrarrápida, generación de mockups de productos, variación de estilos estéticos y renderizado de assets gráficos en segundos a partir de descripciones textuales.</p>
+          <div class="app-impact">
+            <strong>Impacto:</strong> Reducción de semanas a horas en fases de prototipado.
+          </div>
+        </div>
+
+        <div class="app-card" data-category="business">
+          <div class="app-card-header">
+            <span class="app-icon">📊</span>
+            <span class="app-cat-tag">Negocios</span>
+          </div>
+          <h3>Agentes Autónomos y Síntesis RAG</h3>
+          <p>Búsqueda semántica sobre documentación interna corporativa, agentes que ejecutan flujos de trabajo de múltiples pasos y atención al cliente hiperpersonalizada en tiempo real.</p>
+          <div class="app-impact">
+            <strong>Impacto:</strong> Respuestas instantáneas y cero silos de información.
+          </div>
+        </div>
+
+        <div class="app-card" data-category="science">
+          <div class="app-card-header">
+            <span class="app-icon">🧬</span>
+            <span class="app-cat-tag">Ciencia</span>
+          </div>
+          <h3>Descubrimiento de Fármacos y Materiales</h3>
+          <p>Generación de secuencias de proteínas sintéticas (AlphaFold), simulación de acoplamiento molecular y diseño de materiales sostenibles con propiedades físicas optimizadas.</p>
+          <div class="app-impact">
+            <strong>Impacto:</strong> Aceleración de décadas de investigación biológica.
+          </div>
+        </div>
+
+        <div class="app-card" data-category="creativity">
+          <div class="app-card-header">
+            <span class="app-icon">🎙️</span>
+            <span class="app-cat-tag">Creatividad</span>
+          </div>
+          <h3>Audio, Doblaje y Video Sintético</h3>
+          <p>Clonación de voz con entonación natural en más de 80 idiomas, sincronización labial automática para localización global de contenido audiovisual y creación de pistas sonoras.</p>
+          <div class="app-impact">
+            <strong>Impacto:</strong> Globalización inmediata de producciones educativas y formativas.
+          </div>
+        </div>
+
+        <div class="app-card" data-category="business">
+          <div class="app-card-header">
+            <span class="app-icon">⚖️</span>
+            <span class="app-cat-tag">Negocios</span>
+          </div>
+          <h3>Análisis Jurídico y Financiero</h3>
+          <p>Auditoría de contratos extensos en segundos, identificación de cláusulas de riesgo, extracción estructurada de balances contables y redacción preliminar de dictámenes legales.</p>
+          <div class="app-impact">
+            <strong>Impacto:</strong> Mayor precisión y ahorro crítico de horas de revisión manual.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección: Simulador Interactivo de Prompts -->
+  <section class="section bg-light" id="simulador">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-badge">Laboratorio En Vivo</span>
+        <h2 class="section-title">Simulador Interactivo de Generación</h2>
+        <p class="section-subtitle">
+          Experimenta cómo responde un modelo fundacional a diferentes tipos de prompts. Selecciona una plantilla predefinida o formula tu propia consulta.
+        </p>
+      </div>
+
+      <div class="simulator-wrapper">
+        <div class="simulator-toolbar">
+          <span class="sim-label">Plantillas de Prompt Recomendadas:</span>
+          <div class="sim-preset-buttons">
+            <button class="preset-btn active" data-preset="explain">Definición Ejecutiva</button>
+            <button class="preset-btn" data-preset="code">Generar Función Python</button>
+            <button class="preset-btn" data-preset="creative">Concepto Creativo UI</button>
+            <button class="preset-btn" data-preset="rag">Explicar RAG</button>
+          </div>
+        </div>
+
+        <div class="simulator-box">
+          <div class="sim-input-pane">
+            <label for="prompt-input" class="sim-pane-header">
+              <span>Prompt de Entrada (Instrucción)</span>
+              <span class="prompt-counter" id="char-count">85 caracteres</span>
+            </label>
+            <textarea id="prompt-input" rows="4" placeholder="Escribe aquí tu instrucción para el modelo de IA..."></textarea>
+            
+            <div class="sim-controls">
+              <div class="param-group">
+                <label for="temp-slider">Temperatura: <span id="temp-val">0.7</span></label>
+                <input type="range" id="temp-slider" min="0" max="1" step="0.1" value="0.7">
+              </div>
+              <button class="btn btn-primary" id="btn-generate-ai" type="button">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                Generar Respuesta
+              </button>
+            </div>
+          </div>
+
+          <div class="simulator-divider"></div>
+
+          <div class="sim-output-pane">
+            <div class="sim-pane-header">
+              <span>Resultado Generado (Salida del Modelo)</span>
+              <div class="output-actions">
+                <span class="sim-status-badge" id="sim-status">Listo</span>
+                <button class="btn-copy" id="btn-copy-output" title="Copiar texto">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                  Copiar
+                </button>
+              </div>
+            </div>
+            
+            <div class="sim-output-box" id="sim-output-text">Presiona "Generar Respuesta" o elige una de las plantillas superiores para ver la simulación en tiempo real.</div>
+
+            <div class="sim-footer-stats">
+              <span>Latencia: <strong id="stat-latency">-- ms</strong></span>
+              <span>Tokens calculados: <strong id="stat-tokens">0</strong></span>
+              <span>Modelo simulado: <strong>GenAI-Ultra-v4</strong></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección: Retos, Sesgos y Ética -->
+  <section class="section" id="retos">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-badge">Responsabilidad</span>
+        <h2 class="section-title">Desafíos, Ética y Consideraciones</h2>
+        <p class="section-subtitle">
+          El inmenso potencial de la IA Generativa viene acompañado de importantes responsabilidades técnicas, legales y sociales.
+        </p>
+      </div>
+
+      <div class="ethics-grid">
+        <div class="ethics-card">
+          <div class="ethics-icon-box">⚠️</div>
+          <h3>Alucinaciones</h3>
+          <p>
+            Generación de afirmaciones factualmente incorrectas expresadas con absoluta confianza. Se mitiga mediante técnicas de <strong>RAG</strong> (Retrieval-Augmented Generation) y verificación de fuentes en bases de conocimiento indexadas.
+          </p>
+        </div>
+
+        <div class="ethics-card">
+          <div class="ethics-icon-box">🛡️</div>
+          <h3>Seguridad y Jailbreaking</h3>
+          <p>
+            Vulnerabilidades frente a inyecciones de prompts maliciosos que buscan evadir los filtros de seguridad del modelo. Requiere capas de alineamiento robusto como <strong>RLHF</strong> (Reinforcement Learning from Human Feedback).
+          </p>
+        </div>
+
+        <div class="ethics-card">
+          <div class="ethics-icon-box">⚖️</div>
+          <h3>Derechos de Autor</h3>
+          <p>
+            Dilemas legales sobre la procedencia de los datos utilizados en el pre-entrenamiento masivo, atribución a creadores humanos y propiedad intelectual de las obras sintetizadas por máquinas.
+          </p>
+        </div>
+
+        <div class="ethics-card">
+          <div class="ethics-icon-box">👥</div>
+          <h3>Sesgos y Equidad</h3>
+          <p>
+            Riesgo de perpetuar o amplificar estereotipos y sesgos históricos presentes en internet. Es indispensable una curaduría ética y auditorías continuas de equidad algorítmica.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Banner de Suscripción / Comunidad -->
+  <section class="newsletter-section">
+    <div class="container">
+      <div class="newsletter-box">
+        <div class="newsletter-content">
+          <h2>Mantente a la vanguardia de la IA Generativa</h2>
+          <p>Recibe análisis profundos sobre nuevos modelos, frameworks de desarrollo, agentes y mejores prácticas de ingeniería de prompts.</p>
+        </div>
+        <form class="newsletter-form" id="newsletter-form">
+          <div class="form-group-inline">
+            <input type="email" class="input-email" id="newsletter-email" placeholder="Ingresa tu correo electrónico..." required>
+            <button type="submit" class="btn btn-primary btn-newsletter" id="btn-subscribe">Suscribirse</button>
+          </div>
+          <span class="newsletter-note">Demostración en página única. No se recopilarán tus datos personales.</span>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand-info">
+          <div class="brand-logo footer-logo">
+            <div class="logo-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4"></path></svg>
+            </div>
+            <span class="logo-title">GenAI<strong>Hub</strong></span>
+          </div>
+          <p class="footer-desc">
+            Portal informativo dedicado a la difusión pedagógica y estratégica de la Inteligencia Artificial Generativa y sus implicaciones en la sociedad.
+          </p>
+        </div>
+
+        <div class="footer-columns">
+          <div class="footer-col">
+            <h4>Navegación</h4>
+            <ul>
+              <li><a href="#que-es" class="footer-link">¿Qué es?</a></li>
+              <li><a href="#modelos" class="footer-link">Modelos Fundacionales</a></li>
+              <li><a href="#aplicaciones" class="footer-link">Casos de Uso</a></li>
+              <li><a href="#simulador" class="footer-link">Simulador en Vivo</a></li>
+              <li><a href="#retos" class="footer-link">Ética y Seguridad</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Recursos Mock</h4>
+            <ul>
+              <li><button class="footer-mock-btn" id="btn-footer-docs">Documentación API</button></li>
+              <li><button class="footer-mock-btn" id="btn-footer-guides">Guías de Prompting</button></li>
+              <li><button class="footer-mock-btn" id="btn-footer-glossary">Glosario de Términos</button></li>
+              <li><button class="footer-mock-btn" id="btn-footer-faq">Preguntas Frecuentes</button></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Políticas y Enlaces</h4>
+            <ul>
+              <li><button class="footer-mock-btn" id="btn-footer-privacy">Privacidad</button></li>
+              <li><button class="footer-mock-btn" id="btn-footer-terms">Términos de Servicio</button></li>
+              <li><button class="footer-mock-btn" id="btn-footer-cookies">Ajustes de Cookies</button></li>
+              <li><button class="footer-mock-btn" id="btn-footer-contact">Contacto Directo</button></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 GenAI Hub. Todos los derechos reservados. Sitio web de una sola página desarrollado con HTML, CSS y JS.</p>
+        <p class="footer-credit">Inspirado en la paleta y estética profesional de José Manuel Perdomo.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
